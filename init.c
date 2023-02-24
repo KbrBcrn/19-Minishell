@@ -6,27 +6,33 @@
 /*   By: kbeceren <kbeceren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:25:35 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/02/23 13:09:42 by kbeceren         ###   ########.fr       */
+/*   Updated: 2023/02/24 12:51:22 by kbeceren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_init_env(t_data *data, t_list **new_env, char **envp)
+char	**ft_init_env(t_data *data, char **envp)
 {
 	int		i;
 
 	i = 0;
-	while (envp[data->len_env])
-		data->len_env++;
-	while (i < data->len_env)
+	while (envp[i]) //Count the number of environmebt variables
+		i++;
+	data->new_env = (char **)malloc(sizeof(char *) * (i + 1));
+	i = 0;
+	while (envp[i])
 	{
-		ft_lstadd_back(new_env, ft_lstnew(envp[i]));
+		data->new_env[i] = ft_strdup(envp[i]);
 		i++;
 	}
+	data->new_env[i] = NULL;
+	data->shlvl = get_env(data->new_env, "SHLVL=");
+	if (!data->shlvl)
+		add_env(data, data->new_env, "SHLVL=1");
+	else
+		incremenet_shell_level(data->new_env);
 }
-
-
 
 /* get_shvl is used to obtain the value of the SHLVL environment variable, 
 which indicates the nesting level of the shell process. 
@@ -35,27 +41,22 @@ Function returns a pointer to the value of the environment variable
 (which starts after the equals sign).
 */
 
-char	*get_shlvl(t_list *env, char *name)
+char	*get_env(char **env, char *name)
 {
-	char	*content;
-	int		len_name;
+	int		i;
+	char	*shlvl;
 
-	len_name = ft_strlen(name);
-	while (env)
+	i = 0;
+	while (env[i])
 	{
-		content = (char *) env->content;
-		if (!ft_strncmp(name, content, len_name) && content[len_name] == '=')
-			return (content + len_name + 1); 
-		env = env->next;
+		if (ft_strncmp(name, env[i], 6) == 0)
+		{
+			shlvl = ft_strdup(env[i] + 6);
+			return (shlvl);
+		}
+		i++;
 	}
-	return (NULL);
+	shlvl = ft_strdup("0");
+	return (shlvl);
 }
 
-// void	ft_env(t_list *env)
-// {
-// 	while (env)
-// 	{
-// 		printf("%s\n", env->content);
-// 		env = env->next;
-// 	}
-// }
