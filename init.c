@@ -6,18 +6,28 @@
 /*   By: kbeceren <kbeceren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:25:35 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/02/24 12:51:22 by kbeceren         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:50:14 by kbeceren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+This function duplicates the given environment variables 
+envp and makes some modifications to it. It creates a new environment 
+variable MINISHELL with the current working directory as its value 
+and adds it to the duplicated environment. It also removes any existing 
+MINISHELL and OLDPWD environment variables if they exist. Finally, 
+it updates the value of PWD environment variable to the current working directory.
+*/
+
 char	**ft_init_env(t_data *data, char **envp)
 {
 	int		i;
+	char	*str;
 
 	i = 0;
-	while (envp[i]) //Count the number of environmebt variables
+	while (envp[i])
 		i++;
 	data->new_env = (char **)malloc(sizeof(char *) * (i + 1));
 	i = 0;
@@ -27,36 +37,18 @@ char	**ft_init_env(t_data *data, char **envp)
 		i++;
 	}
 	data->new_env[i] = NULL;
-	data->shlvl = get_env(data->new_env, "SHLVL=");
-	if (!data->shlvl)
-		add_env(data, data->new_env, "SHLVL=1");
-	else
-		incremenet_shell_level(data->new_env);
-}
-
-/* get_shvl is used to obtain the value of the SHLVL environment variable, 
-which indicates the nesting level of the shell process. 
-The value of SHLVL is incremented each time a new shell process is created.
-Function returns a pointer to the value of the environment variable
-(which starts after the equals sign).
-*/
-
-char	*get_env(char **env, char *name)
-{
-	int		i;
-	char	*shlvl;
-
-	i = 0;
-	while (env[i])
+	data->current_pwd = getcwd(NULL, 0);
+	str = ft_getenv(".MINISHELL", data->new_env);
+	if (str)
 	{
-		if (ft_strncmp(name, env[i], 6) == 0)
-		{
-			shlvl = ft_strdup(env[i] + 6);
-			return (shlvl);
-		}
-		i++;
+		data->new_env = remove_env_var(".MINISHELL", data->new_env);
+		free(str);
 	}
-	shlvl = ft_strdup("0");
-	return (shlvl);
+	data->path = ft_strdup(".MINISHELL=");
+	data->path = ft_strjoin(ft_strjoin(data->path, data->current_pwd), "/minishell");
+	data->new_env = remove_env_var("OLDPWD", data->new_env);
+	data->new_env = update_pwd(data->new_env);
+	free(data->current_pwd);
+	free(data->path);
+	return (data->new_env);
 }
-
