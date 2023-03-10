@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:21:05 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/03/10 13:03:32 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/10 13:40:30 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 # include <fcntl.h>
 # include <signal.h>
 
+int	g_error;
+
 enum e_fd
 {
-	outfile,
-	infile
+	infile,
+	outfile
 };
-
-int	g_error;
 
 typedef struct s_data
 {
