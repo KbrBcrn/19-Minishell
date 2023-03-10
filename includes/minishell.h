@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:21:05 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/03/10 13:49:09 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/10 13:51:49 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_data
 
 enum e_fd
 {
-	outfile,
-	infile
+	infile,
+	outfile
 };
 
 enum e_error
