@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:21:05 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/03/10 13:40:30 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/10 13:49:09 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,37 @@
 # include <fcntl.h>
 # include <signal.h>
 
-int	g_error;
-
-enum e_fd
-{
-	infile,
-	outfile
-};
+int						g_error;
+typedef struct s_list	t_list;
 
 typedef struct s_data
 {
 	char	*path;
 	char	**new_env;
-	t_list	*commands;
 	char	*current_pwd;
 	char	*shlvl;
 	char	*line;
 	bool	s_quote;
 	bool	d_quote;
+	int		count_cmd;
 }	t_data;
+
+enum e_fd
+{
+	outfile,
+	infile
+};
+
+enum e_error
+{
+	FILE_ERROR = 1,
+	INTERRUPT_NL = 1,
+	NOT_EXECUTABLE = 126,
+	COMMAND_NOT_FOUND = 127,
+	INTERRUPTED = 130,
+	QUIT = 131,
+	SYNTAX_ERROR = 258
+};
 
 char	**ft_init_env(t_data *data, char **envp);
 char	**remove_env_var(char *var, char **env);
