@@ -6,7 +6,7 @@
 /*   By: kbeceren <kbeceren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:19:21 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/03/08 14:38:40 by kbeceren         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:07:17 by kbeceren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ int	main(int argc, char **argv, char **envp)
 	data.new_env = increment_shell_level(&data, data.new_env);
 	// for(int i = 0; i < 38; i++)
 	// 	printf("%s\n", data.new_env[i]);
+	
 	while (1)
 	{
-		data.line = reader(&data); // do not forget to free the memory
+		data.line = reader(&data); // do not forget to free the memory	
 		if (!data.line || check_syntax(&data) || is_only_space(data.line))
 			continue ;
-		parser(&data);
+		// parser(&data, &data.line);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kbeceren <kbeceren@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:55:03 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/03/07 11:28:56 by kbeceren         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:13:54 by kbeceren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	term_config(void)
 
 void	restore_prompt(int sig)
 {
-	g_error = 130;
+	g_error = INTERRUPTED;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
@@ -33,14 +33,14 @@ void	restore_prompt(int sig)
 
 void	ctrl_c(int sig)
 {
-	g_error = 130;
+	g_error = INTERRUPTED;
 	write(1, "^C\n", 3);
 	(void)sig;
 }
 
 void	back_slash(int sig)
 {
-	g_error = 131;
+	g_error = QUIT;
 	printf("^\\Quit : 3\n");
 	(void)sig;
 }
