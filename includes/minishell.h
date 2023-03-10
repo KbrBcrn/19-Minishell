@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kbeceren <kbeceren@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:21:05 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/03/08 13:15:24 by kbeceren         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:03:32 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include <signal.h>
+
+enum e_fd
+{
+	outfile,
+	infile
+};
 
 int	g_error;
 
