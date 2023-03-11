@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 14:08:05 by aabda             #+#    #+#             */
-/*   Updated: 2023/03/11 23:12:28 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/11 23:20:27 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*ft_double_quotes(t_data *data)
 {
+	//	need to add a check for all exeptions (backslash,...) 
+	//	and maybe put all in a new struct ?
 	char	*between_quote;
 	int		first_quote;
 	int		last_quote;
