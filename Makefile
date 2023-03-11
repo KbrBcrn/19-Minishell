@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kbeceren <kbeceren@student.42.fr>          +#+  +:+       +#+         #
+#    By: aabda <aabda@student.s19.be>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 11:10:39 by kbeceren          #+#    #+#              #
-#    Updated: 2023/03/07 12:29:41 by kbeceren         ###   ########.fr        #
+#    Updated: 2023/03/10 14:11:02 by aabda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = 	src/main.c\
 		src/utils.c\
 		src/env.c\
 		src/env_utils.c\
+		src/parser.c
 		
 INCLUDES = includes
 OBJ = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:21:05 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/03/10 13:40:30 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/11 23:13:13 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void	term_config(void);
 char	*join_the_split(char **split);
 int		is_only_space(char *line);
 void	rl_replace_line(const char *text, int clear_undo);
+int		parser(t_data *data);
 
 #endif

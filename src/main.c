@@ -6,7 +6,7 @@
 /*   By: aabda <aabda@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:19:21 by kbeceren          #+#    #+#             */
-/*   Updated: 2023/03/10 13:32:27 by aabda            ###   ########.fr       */
+/*   Updated: 2023/03/11 23:12:35 by aabda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char **argv, char **envp)
 		data.line = reader(&data); // do not forget to free the memory
 		if (!data.line || check_syntax(&data) || is_only_space(data.line))
 			continue ;
-		// parser(&data);
+		parser(&data);
 	}
 	return (0);
 }
